@@ -1,13 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284 88" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" role="img" aria-labelledby="title desc">
   <title id="title">GREENMAX INTCO RECYCLING logo</title>
-  <desc id="desc">GREENMAX logo with INTCO RECYCLING below.</desc>
-  <rect width="284" height="88" fill="#fff"/>
+  <desc id="desc">GREENMAX logo with INTCO RECYCLING centered below.</desc>
+  <rect width="360" height="120" fill="#fff"/>
   <g fill="#007052">
-    <text x="0" y="48" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="43" font-weight="800" letter-spacing="-4">GREEN</text>
-    <path d="M150 48 L165 16 L180 48 L196 16 L207 48 H196 L191 32 L181 52 H174 L165 32 L158 48 Z"/>
-    <text x="205" y="48" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="43" font-weight="800" letter-spacing="-4">AX</text>
-    <circle cx="262" cy="17" r="9" fill="none" stroke="#007052" stroke-width="2"/>
-    <text x="257.4" y="21.5" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700">R</text>
-    <text x="75" y="72" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing=".4">INTCO RECYCLING</text>
+    <text
+      x="18"
+      y="66"
+      font-family="Arial Black, Arial, Helvetica, sans-serif"
+      font-size="47"
+      font-weight="900"
+      letter-spacing="-1">GREENMAX</text>
+    <circle cx="323" cy="30" r="11" fill="none" stroke="#007052" stroke-width="3"/>
+    <text
+      x="317.5"
+      y="35"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="13"
+      font-weight="700">R</text>
+    <text
+      x="180"
+      y="96"
+      text-anchor="middle"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="22"
+      font-weight="700"
+      letter-spacing=".4">INTCO RECYCLING</text>
   </g>
 </svg>
