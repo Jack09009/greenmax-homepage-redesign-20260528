@@ -64,37 +64,14 @@
 
     .logo {
       display: inline-flex;
-      flex-direction: column;
-      width: fit-content;
-      color: var(--green);
-      line-height: 1;
       align-items: center;
-      text-transform: uppercase;
+      width: 240px;
     }
 
-    .logo strong {
-      position: relative;
-      font-size: 40px;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-
-    .logo strong::after {
-      position: absolute;
-      content: "®";
-      right: -12px;
-      top: -5px;
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .logo span {
-      margin-top: 1px;
-      color: var(--green-dark);
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: .6px;
-      text-align: center;
+    .logo img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .top-slogan {
@@ -826,8 +803,7 @@
     <div class="topbar">
       <div class="container topbar-inner">
         <a class="logo" href="#">
-          <strong>GREENMAX</strong>
-          <span>INTCO RECYCLING</span>
+          <img src="assets/logo-greenmax.svg" alt="GREENMAX INTCO RECYCLING">
         </a>
         <div class="top-slogan" aria-hidden="true"></div>
         <div class="tools">
