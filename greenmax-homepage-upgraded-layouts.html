@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GREENMAX Homepage Layout Upgrade</title>
+  <style>
+    :root {
+      --green: #007a5a;
+      --green-dark: #005f46;
+      --green-deep: #064b3b;
+      --lime: #b9c344;
+      --gold: #b5a467;
+      --ink: #152d28;
+      --muted: #65746f;
+      --line: #dce7e2;
+      --soft: #f3f7f5;
+      --white: #fff;
+      --shadow: 0 18px 45px rgba(12, 67, 53, .1);
+      --radius: 8px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--soft);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .layout-tabs {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .layout-tabs button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 16px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .layout-tabs button[aria-pressed="true"] {
+      border-color: var(--green);
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: #fff;
+      border-top: 4px solid #f2f2ef;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr) 320px;
+      align-items: center;
+      gap: 30px;
+      min-height: 92px;
+    }
+
+    .logo {
+      display: inline-flex;
+      flex-direction: column;
+      width: fit-content;
+      color: var(--green);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .logo strong {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .logo span {
+      margin-top: 3px;
+      color: var(--green-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .top-slogan {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .tools {
+      justify-self: end;
+      width: min(100%, 320px);
+    }
+
+    .language {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .language::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background:
+        linear-gradient(90deg, transparent 45%, rgba(0, 0, 0, .25) 45% 55%, transparent 55%),
+        linear-gradient(#e7ecea, #bbc7c2);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12);
+    }
+
+    .search {
+      display: grid;
+      grid-template-columns: 1fr 42px;
+      min-height: 34px;
+      border: 1px solid #92aaa2;
+      background: #fff;
+    }
+
+    .search input {
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      padding: 0 10px;
+    }
+
+    .search button {
+      border: 0;
+      background: var(--green);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .main-nav {
+      background: var(--green);
+      box-shadow: 0 9px 18px rgba(78, 65, 20, .22);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      overflow-x: auto;
+    }
+
+    .nav-inner a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-inner a:first-child,
+    .nav-inner a:hover {
+      background: rgba(0, 0, 0, .14);
+    }
+
+    .hero-section {
+      padding: 28px 0 24px;
+    }
+
+    .hero-frame {
+      position: relative;
+      display: grid;
+      grid-template-columns: 390px minmax(0, 1fr);
+      min-height: 300px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 44px;
+      background:
+        linear-gradient(135deg, rgba(0, 122, 90, .96), rgba(0, 95, 70, .98)),
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .18), transparent 32%);
+      color: #fff;
+    }
+
+    .hero-copy::after {
+      position: absolute;
+      content: "";
+      inset: 0;
+      background:
+        linear-gradient(30deg, transparent 0 48%, rgba(255, 255, 255, .1) 48% 49%, transparent 49%),
+        linear-gradient(150deg, transparent 0 48%, rgba(255, 255, 255, .08) 48% 49%, transparent 49%);
+      background-size: 42px 42px;
+      opacity: .5;
+    }
+
+    .hero-copy > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy h1 {
+      margin: 0;
+      font-size: clamp(58px, 9vw, 92px);
+      line-height: .86;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .hero-copy p {
+      margin: 8px 0 28px;
+      color: var(--lime);
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .chevrons {
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: 2px;
+    }
+
+    .contact {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--green);
+      padding: 0 13px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .hero-photo {
+      position: relative;
+      min-height: 300px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, .7), rgba(255, 255, 255, .1) 42%, rgba(255, 255, 255, .35)),
+        linear-gradient(135deg, #d9e1dd, #fff 52%, #d5e3dd);
+    }
+
+    .hero-photo::before {
+      position: absolute;
+      content: "";
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(40, 55, 51, .08) 0 1px, transparent 1px 95px),
+        linear-gradient(0deg, rgba(40, 55, 51, .05) 0 1px, transparent 1px 95px);
+    }
+
+    .worker {
+      position: absolute;
+      right: 54px;
+      bottom: 0;
+      width: 230px;
+      height: 282px;
+      border-radius: 120px 120px 0 0;
+      background:
+        linear-gradient(180deg, #087e5d 0 14%, transparent 14%),
+        linear-gradient(90deg, #ddcab6 0 39%, #b89578 39% 55%, #dcc7b1 55% 100%);
+      opacity: .92;
+    }
+
+    .worker::before {
+      position: absolute;
+      content: "";
+      top: 62px;
+      left: 64px;
+      width: 105px;
+      height: 96px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34px 42px, #25312e 0 4px, transparent 5px),
+        radial-gradient(circle at 70px 42px, #25312e 0 4px, transparent 5px),
+        linear-gradient(#d8b99d, #c99f7f);
+    }
+
+    .worker::after {
+      position: absolute;
+      content: "";
+      left: 44px;
+      bottom: 0;
+      width: 140px;
+      height: 90px;
+      border-radius: 80px 80px 0 0;
+      background: #f6f8f7;
+    }
+
+    .banner-note {
+      position: absolute;
+      left: 28px;
+      bottom: 22px;
+      color: rgba(20, 45, 40, .58);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .slides {
+      position: absolute;
+      right: 18px;
+      bottom: 14px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .slides span {
+      display: grid;
+      width: 24px;
+      height: 24px;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(20, 33, 29, .24);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .slides span:first-child {
+      background: #fff;
+      color: var(--green);
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr) 290px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .machine-menu,
+    .panel {
+      border-radius: var(--radius);
+    }
+
+    .machine-menu {
+      background: var(--green);
+      color: #fff;
+      padding: 26px 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .machine-menu h2,
+    .section-title {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.18;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .machine-menu ul,
+    .events,
+    .news,
+    .footer ul {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .machine-menu li + li {
+      margin-top: 14px;
+    }
+
+    .machine-menu a {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 24px;
+    }
+
+    .section-title {
+      color: var(--green);
+    }
+
+    .intro p {
+      margin: 16px 0 0;
+      font-size: 13px;
+    }
+
+    .events li {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .event-logo {
+      display: grid;
+      min-height: 48px;
+      place-items: center;
+      border-radius: 6px;
+      background: #eef5f6;
+      color: #2278a2;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.05;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .event-logo.red {
+      background: #fff1ee;
+      color: #ca3d30;
+    }
+
+    .event-logo.teal {
+      background: #e8f4f1;
+      color: #297d84;
+    }
+
+    .event-copy {
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .event-copy strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .chooser-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 290px;
+      gap: 24px;
+      margin-top: 24px;
+      align-items: start;
+    }
+
+    .choose-note {
+      margin: 10px 0 18px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .series {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .machine-image {
+      position: relative;
+      height: 122px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .88), rgba(255, 255, 255, .1)),
+        #eef4ef;
+    }
+
+    .machine-image::before {
+      position: absolute;
+      content: "";
+      left: 50%;
+      bottom: 24px;
+      width: 136px;
+      height: 58px;
+      transform: translateX(-50%);
+      border-radius: 6px;
+      background: linear-gradient(90deg, #91c43b 0 36%, #178264 36% 100%);
+      box-shadow: 0 13px 22px rgba(0, 0, 0, .13);
+    }
+
+    .machine-image::after {
+      position: absolute;
+      content: "";
+      left: calc(50% - 52px);
+      bottom: 76px;
+      width: 52px;
+      height: 44px;
+      clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
+      background: linear-gradient(135deg, #b4d257, #178264);
+    }
+
+    .series:nth-child(2) .machine-image::before {
+      width: 118px;
+      background: linear-gradient(90deg, #178264 0 46%, #91c43b 46% 100%);
+    }
+
+    .series:nth-child(3) .machine-image::before {
+      width: 148px;
+    }
+
+    .series-body {
+      padding: 13px;
+    }
+
+    .series h3 {
+      margin: 0 0 7px;
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .series p {
+      margin: 0 0 11px;
+      color: var(--ink);
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    .materials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .material {
+      min-width: 0;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .material::before {
+      display: block;
+      content: "";
+      height: 44px;
+      margin-bottom: 4px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background:
+        radial-gradient(circle at 12px 12px, rgba(100, 116, 111, .2) 0 2px, transparent 3px),
+        radial-gradient(circle at 40px 27px, rgba(100, 116, 111, .16) 0 2px, transparent 3px),
+        linear-gradient(135deg, #fff, #edf3f0);
+    }
+
+    .material.epe::before {
+      background: linear-gradient(135deg, #ee5d54, #b82b34);
+    }
+
+    .material.epp::before {
+      background: linear-gradient(135deg, #3e4549, #111719);
+    }
+
+    .material.xps::before {
+      background: linear-gradient(135deg, #64d4e5, #348fb5);
+    }
+
+    .news li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+      line-height: 1.26;
+    }
+
+    .news time {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .read-more {
+      display: inline-flex;
+      margin-top: 12px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .footer {
+      margin-top: 34px;
+      background: var(--gold);
+      color: #fff;
+      padding: 28px 0 22px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 26px;
+    }
+
+    .footer h3 {
+      margin: 0;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .footer li {
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    .copyright {
+      grid-column: 1 / -1;
+      margin: 10px 0 0;
+      font-size: 11px;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    body.variant-b .hero-frame {
+      grid-template-columns: minmax(0, 1fr) 360px;
+    }
+
+    body.variant-b .hero-copy {
+      order: 2;
+    }
+
+    body.variant-b .hero-photo {
+      order: 1;
+    }
+
+    body.variant-b .main-grid {
+      grid-template-columns: 230px minmax(0, 1fr);
+    }
+
+    body.variant-b .events-panel {
+      grid-column: 1 / -1;
+    }
+
+    body.variant-b .events {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    body.variant-b .events li {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: #fff;
+    }
+
+    body.variant-b .chooser-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    body.variant-c .topbar-inner {
+      min-height: 82px;
+    }
+
+    body.variant-c .hero-section {
+      padding-bottom: 16px;
+    }
+
+    body.variant-c .hero-frame {
+      min-height: 245px;
+      grid-template-columns: 330px minmax(0, 1fr);
+      box-shadow: none;
+    }
+
+    body.variant-c .hero-copy,
+    body.variant-c .hero-photo {
+      min-height: 245px;
+    }
+
+    body.variant-c .hero-copy {
+      padding: 34px;
+    }
+
+    body.variant-c .main-grid {
+      grid-template-columns: 220px minmax(0, 1fr) 300px;
+      gap: 18px;
+    }
+
+    body.variant-c .chooser-row {
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    body.variant-c .panel,
+    body.variant-c .machine-menu {
+      padding: 20px;
+      box-shadow: none;
+    }
+
+    body.variant-c .series-grid {
+      gap: 12px;
+    }
+
+    @media (max-width: 1020px) {
+      .topbar-inner {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 16px 0;
+      }
+
+      .tools {
+        justify-self: stretch;
+      }
+
+      .language {
+        justify-content: flex-start;
+      }
+
+      .hero-frame,
+      body.variant-b .hero-frame,
+      body.variant-c .hero-frame {
+        grid-template-columns: 1fr;
+      }
+
+      body.variant-b .hero-copy,
+      body.variant-b .hero-photo {
+        order: initial;
+      }
+
+      .main-grid,
+      body.variant-b .main-grid,
+      body.variant-c .main-grid,
+      .chooser-row,
+      body.variant-c .chooser-row {
+        grid-template-columns: 1fr;
+      }
+
+      .machine-menu ul {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .machine-menu li + li {
+        margin-top: 0;
+      }
+
+      body.variant-b .events {
+        grid-template-columns: 1fr;
+      }
+
+      .series-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .layout-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+      }
+
+      .container {
+        width: min(var(--max), calc(100% - 24px));
+      }
+
+      .nav-inner a {
+        padding: 0 12px;
+      }
+
+      .hero-copy {
+        padding: 30px 24px;
+      }
+
+      .hero-copy h1 {
+        font-size: 58px;
+      }
+
+      .hero-copy p {
+        font-size: 18px;
+      }
+
+      .machine-menu ul,
+      .events li,
+      .news li,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .materials {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body class="variant-a">
+  <div class="layout-tabs" aria-label="Layout versions">
+    <button type="button" data-variant="variant-a" aria-pressed="true">Version 1: balanced</button>
+    <button type="button" data-variant="variant-b" aria-pressed="false">Version 2: product first</button>
+    <button type="button" data-variant="variant-c" aria-pressed="false">Version 3: compact</button>
+  </div>
+
+  <header>
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <a class="logo" href="#">
+          <strong>GREENMAX</strong>
+          <span>INTCO RECYCLING</span>
+        </a>
+        <div class="top-slogan">EPS Recycling Specialist</div>
+        <div class="tools">
+          <div class="language">Select Language</div>
+          <form class="search">
+            <input aria-label="Search" />
+            <button type="submit" aria-label="Search">⌕</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="container nav-inner">
+        <a href="#">Home</a>
+        <a href="#">INTCO Recycling</a>
+        <a href="#">Machines</a>
+        <a href="#">Material</a>
+        <a href="#">Cases</a>
+        <a href="#">Infos</a>
+        <a href="#">Contact</a>
+        <a href="#">Inquiry</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-frame">
+        <div class="hero-copy">
+          <h1>EPS</h1>
+          <p>Recycling Specialist</p>
+          <div class="hero-actions">
+            <span class="chevrons">›››››</span>
+            <a class="contact" href="#">CONTACT US</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <div class="worker"></div>
+          <div class="banner-note">Original banner photo area unchanged</div>
+          <div class="slides"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="main-grid">
+      <aside class="machine-menu">
+        <h2>Machine</h2>
+        <ul>
+          <li><a href="#">EPS Foam Compactor</a></li>
+          <li><a href="#">PE Foam Densifier</a></li>
+          <li><a href="#">Foam Densifier</a></li>
+          <li><a href="#">Foam Crusher</a></li>
+          <li><a href="#">Bottles Dewater</a></li>
+        </ul>
+      </aside>
+
+      <section class="panel intro">
+        <h2 class="section-title">Welcome to<br>INTCO Recycling</h2>
+        <p>INTCO Recycling is a foam recycling specialist, providing a total solution to EPS/EPE/EPP foam recycling. We manufacture and sell GREENMAX foam compactors/densifiers and foam recycling machine, buy compressed foam blocks, and turn them into frame products.</p>
+        <p>Every year, INTCO Recycling recycles 100,000 tons of waste EPS, which helps reduce 300,000 tons of carbon emissions. INTCO has become one of the biggest waste EPS end-user and recyclers in the world.</p>
+      </section>
+
+      <section class="panel events-panel">
+        <h2 class="section-title">New Exhibitions</h2>
+        <ul class="events">
+          <li>
+            <span class="event-logo">EXPO<br>PLASTICOS</span>
+            <span class="event-copy"><strong>Mexico</strong>Mar 24-26, 2026<br>Booth No. 1660</span>
+          </li>
+          <li>
+            <span class="event-logo red">Chinaplas<br>2026</span>
+            <span class="event-copy"><strong>Shanghai, China</strong>Apr 21-24, 2026<br>Booth: 1.2A137</span>
+          </li>
+          <li>
+            <span class="event-logo teal">FOAM<br>EXPO</span>
+            <span class="event-copy"><strong>Michigan, USA</strong>Jun 23-25, 2026<br>Booth:1908</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="chooser-row">
+      <section class="panel">
+        <h2 class="section-title">How to Choose Foam Recycling Machine</h2>
+        <p class="choose-note">Confirm the material you want to recycle and choose the GREENMAX you need:</p>
+        <div class="series-grid">
+          <article class="series">
+            <div class="machine-image" aria-label="GREENMAX Machine Apollo Series image"></div>
+            <div class="series-body">
+              <h3>GREENMAX Machine Apollo Series</h3>
+              <p>Applicable Material:<br>EPS/XPS/EPP/PSP</p>
+              <div class="materials">
+                <span class="material">EPS</span>
+                <span class="material">PSP</span>
+                <span class="material xps">XPS</span>
+                <span class="material epp">EPP</span>
+                <span class="material">PSP</span>
+                <span class="material epe">EPE</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="series">
+            <div class="machine-image" aria-label="GREENMAX Machine Mars Series image"></div>
+            <div class="series-body">
+              <h3>GREENMAX Machine Mars Series</h3>
+              <p>Applicable Material:<br>EPS/DUST/EPE/XPS/EPP/PSP</p>
+              <div class="materials">
+                <span class="material">EPS</span>
+                <span class="material">EPS DUST</span>
+                <span class="material epe">EPE</span>
+                <span class="material epp">EPP</span>
+                <span class="material">PSP</span>
+                <span class="material xps">XPS</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="series">
+            <div class="machine-image" aria-label="GREENMAX Machine Zeus Series image"></div>
+            <div class="series-body">
+              <h3>GREENMAX Machine Zeus Series</h3>
+              <p>Applicable Material:<br>EPS/EPE/XPS/EPP/PSP</p>
+              <div class="materials">
+                <span class="material epe">EPE</span>
+                <span class="material epp">EPP</span>
+                <span class="material xps">XPS</span>
+                <span class="material">PSP</span>
+                <span class="material">EPS</span>
+                <span class="material">EPS</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">News</h2>
+        <ul class="news">
+          <li><span>GreenMax at the Tokyo Environmental Exhibition: New JSCS Supports Automotive...</span><time>2026-05-26</time></li>
+          <li><span>Beverage can recycling | Dewatering or Baling? How to Choose the Right Aluminum...</span><time>2026-05-19</time></li>
+          <li><span>Focusing on the Automotive and Electronics Industries: GreenMax Promotes Closed-Lo...</span><time>2026-05-15</time></li>
+          <li><span>GreenMax Hydraulic Polyethylene Compactor: A Real Factory Test and a New...</span><time>2026-05-13</time></li>
+          <li><span>How to Solve Odor Concerns with a Hot-Melting EPS Densifier?</span><time>2026-05-09</time></li>
+          <li><span>GreenMax Offers Front-End EPP Foam Compactor Solutions and Back-End...</span><time>2026-05-07</time></li>
+          <li><span>How a Foam Densifier Turns Appliance EPS Foam Packaging from a Cost Burden into...</span><time>2026-04-29</time></li>
+          <li><span>Daily Waste Recycling Solutions Centered on a Beverage Depackaging Machine</span><time>2026-04-27</time></li>
+          <li><span>How to Solve the Piling of EPP Foam Packaging from EV Batteries and Auto Part...</span><time>2026-04-24</time></li>
+        </ul>
+        <a class="read-more" href="#">Read More...</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <section>
+        <h3>INTCO Recycling</h3>
+        <ul>
+          <li>EPS Recycling Specialist</li>
+          <li>About GREENMAX</li>
+          <li>Purchase Waste EPS</li>
+          <li>Reuse Waste EPS</li>
+          <li>Our Achievement</li>
+          <li>GREENMAX Factory</li>
+          <li>INTCO Group History</li>
+          <li>INTCO Great Press</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Machines</h3>
+        <ul>
+          <li>Screw Compact</li>
+          <li>Screw Compact Plus</li>
+          <li>Melter</li>
+          <li>Dewater</li>
+          <li>Crusher</li>
+          <li>Hydraulic Compactor</li>
+          <li>Washing Line</li>
+          <li>Granulator</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Material</h3>
+        <ul>
+          <li>Polystyrene Foam</li>
+          <li>Polyethylene Foam</li>
+          <li>Plastic Foam</li>
+          <li>Beverage Packaging</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Cases</h3>
+        <ul>
+          <li>VIP Partner</li>
+          <li>EUROPE</li>
+          <li>OCEANIA</li>
+          <li>AFRICA</li>
+          <li>SOUTH AMERICA</li>
+          <li>NORTH AMERICA</li>
+          <li>ASIA</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Infos</h3>
+        <ul>
+          <li>Recycling Articles</li>
+          <li>Company Exhibition</li>
+          <li>INTCO News</li>
+          <li>INTCO USA</li>
+        </ul>
+      </section>
+      <p class="copyright">Copyright 2012-2026 intcorecycling.com All rights reserved. | PRIVACY POLICY | SITEMAP | CONTACTS<br>Links: STYROFOAM RECYCLING | POLYSTYRENE RECYCLING | EPS RECYCLING</p>
+    </div>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll("[data-variant]");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.body.classList.remove("variant-a", "variant-b", "variant-c");
+        document.body.classList.add(tab.dataset.variant);
+        tabs.forEach((item) => item.setAttribute("aria-pressed", String(item === tab)));
+      });
+    });
+  </script>
+</body>
+</html>
