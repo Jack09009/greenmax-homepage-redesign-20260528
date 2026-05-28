@@ -43,37 +43,6 @@
       font: inherit;
     }
 
-    .layout-tabs {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px;
-      background: rgba(255, 255, 255, .94);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(12px);
-    }
-
-    .layout-tabs button {
-      min-height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #fff;
-      color: var(--ink);
-      padding: 0 16px;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .layout-tabs button[aria-pressed="true"] {
-      border-color: var(--green);
-      background: var(--green);
-      color: #fff;
-      font-weight: 700;
-    }
-
     .container {
       width: min(var(--max), calc(100% - 36px));
       margin: 0 auto;
@@ -799,11 +768,6 @@
     }
 
     @media (max-width: 620px) {
-      .layout-tabs {
-        justify-content: flex-start;
-        overflow-x: auto;
-      }
-
       .container {
         width: min(var(--max), calc(100% - 24px));
       }
@@ -844,12 +808,6 @@
   </style>
 </head>
 <body class="variant-a">
-  <div class="layout-tabs" aria-label="Layout versions">
-    <button type="button" data-variant="variant-a" aria-pressed="true">Version 1: balanced</button>
-    <button type="button" data-variant="variant-b" aria-pressed="false">Version 2: product first</button>
-    <button type="button" data-variant="variant-c" aria-pressed="false">Version 3: compact</button>
-  </div>
-
   <header>
     <div class="topbar">
       <div class="container topbar-inner">
@@ -1074,16 +1032,5 @@
     </div>
   </footer>
 
-  <script>
-    const tabs = document.querySelectorAll("[data-variant]");
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        document.body.classList.remove("variant-a", "variant-b", "variant-c");
-        document.body.classList.add(tab.dataset.variant);
-        tabs.forEach((item) => item.setAttribute("aria-pressed", String(item === tab)));
-      });
-    });
-  </script>
 </body>
 </html>
